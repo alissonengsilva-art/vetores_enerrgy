@@ -1,0 +1,481 @@
+{
+  "mqtt": {
+    "host": "172.29.138.138",
+    "port": 1883,
+    "base_topic": "factory/vars",
+    "qos": 1,
+    "retain": true,
+    "period": 2.0
+  },
+
+  "s7": {
+    "retries": 3,
+    "min_interval_ms": 10
+  },
+
+  "clps": [
+    {
+      "name": "CLP 1500 - AR COMPRIMIDO",
+      "ip": "192.168.0.1",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 1,
+      "vars": [
+        { "name": "Pressão ar Montagem",  "offset": 0, "size": 4, "type": "REAL" },
+        { "name": "Pressão ar Funilaria", "offset": 4, "size": 4, "type": "REAL" },
+        { "name": "Pressão ar Pintura",   "offset": 8, "size": 4, "type": "REAL" },
+        { "name": "Pressão ar Prensas",   "offset": 12, "size": 4, "type": "REAL" },
+        { "name": "Pressão ar Supply 1",  "offset": 16, "size": 4, "type": "REAL" },
+        { "name": "Pressão Central de AR","offset": 20, "size": 4, "type": "REAL" }
+      ]
+    },
+    
+    
+
+    {
+      "name": "CLP 1500 - COMPRESSORES",
+      "ip": "192.168.0.1",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 2,
+      "vars": [
+        { "name": "cp01-pressao", "offset": 0, "size": 4, "type": "REAL" },
+        { "name": "cp01-sp",      "offset": 4, "size": 4, "type": "REAL" },
+        { "name": "cp01-adm",     "offset": 354, "size": 4, "type": "REAL" },
+        { "name": "cp01-by",      "offset": 382, "size": 4, "type": "REAL" },
+
+        { "name": "cp02-pressao", "offset": 302, "size": 4, "type": "REAL" },
+        { "name": "cp02-sp",      "offset": 330, "size": 4, "type": "REAL" },
+        { "name": "cp02-adm",     "offset": 358, "size": 4, "type": "REAL" },
+        { "name": "cp02-by",      "offset": 386, "size": 4, "type": "REAL" },
+
+        { "name": "cp03-pressao", "offset": 306, "size": 4, "type": "REAL" },
+        { "name": "cp03-sp",      "offset": 334, "size": 4, "type": "REAL" },
+        { "name": "cp03-adm",     "offset": 362, "size": 4, "type": "REAL" },
+        { "name": "cp03-by",      "offset": 390, "size": 4, "type": "REAL" },
+
+        { "name": "cp04-pressao", "offset": 310, "size": 4, "type": "REAL" },
+        { "name": "cp04-sp",      "offset": 338, "size": 4, "type": "REAL" },
+        { "name": "cp04-adm",     "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "cp04-by",      "offset": 394, "size": 4, "type": "REAL" },
+
+        { "name": "cp05-pressao", "offset": 314, "size": 4, "type": "REAL" },
+        { "name": "cp05-sp",      "offset": 342, "size": 4, "type": "REAL" },
+        { "name": "cp05-adm",     "offset": 370, "size": 4, "type": "REAL" },
+        { "name": "cp05-by",      "offset": 398, "size": 4, "type": "REAL" },
+
+        { "name": "cp06-pressao", "offset": 318, "size": 4, "type": "REAL" },
+        { "name": "cp06-sp",      "offset": 346, "size": 4, "type": "REAL" },
+        { "name": "cp06-adm",     "offset": 374, "size": 4, "type": "REAL" },
+        { "name": "cp06-by",      "offset": 402, "size": 4, "type": "REAL" },
+
+        { "name": "cp07-pressao", "offset": 322, "size": 4, "type": "REAL" },
+        { "name": "cp07-sp",      "offset": 350, "size": 4, "type": "REAL" },
+        { "name": "cp07-adm",     "offset": 378, "size": 4, "type": "REAL" },
+        { "name": "cp07-by",      "offset": 406, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    {
+      "name": "CLP MCC 1 - Header",
+      "ip": "192.168.0.2",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 72,
+      "vars": [
+        { "name": "Pressão ar no Header", "offset": 804, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    {
+      "name": "CLP 1500 - ÁGUA DE RESFRIAMENTO",
+      "ip": "192.168.0.2",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 72,
+      "vars": [
+        { "name": "Temperatura Água resfriamento Prensas",   "offset": 114, "size": 4, "type": "REAL" },
+        { "name": "Pressão Água resfriamento Prensas",       "offset": 118, "size": 4, "type": "REAL" },
+        { "name": "Temperatura Água resfriamento Funilaria", "offset": 276, "size": 4, "type": "REAL" },
+        { "name": "Pressão Água resfriamento Funilaria",     "offset": 280, "size": 4, "type": "REAL" },
+        { "name": "Temperatura Header", "offset": 800, "size": 4, "type": "REAL" },
+        { "name": "Vazão montagem",     "offset": 682, "size": 4, "type": "REAL" },
+        { "name": "Vazão supplier",     "offset": 722, "size": 4, "type": "REAL" },
+        { "name": "Vazão funilaria",    "offset": 642, "size": 4, "type": "REAL" },
+        { "name": "Vazão prensas",      "offset": 602, "size": 4, "type": "REAL" },
+        { "name": "Vazão pintura",      "offset": 562, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    {
+      "name": "CLP BOMBAS AGUA RESFRIAMENTO",
+      "ip": "192.168.0.4",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 72,
+      "vars": [
+        { "name": "Temperatura Água resfriamento Compressores", "offset": 230, "size": 4, "type": "REAL" },
+        { "name": "Pressão Água Compressores", "offset": 234, "size": 4, "type": "REAL" },
+
+        { "name": "bac01-hz",       "offset": 526,  "size": 4, "type": "REAL" },
+        { "name": "bac01-corrente", "offset": 522,  "size": 4, "type": "REAL" },
+        { "name": "bac02-hz",       "offset": 572,  "size": 4, "type": "REAL" },
+        { "name": "bac02-corrente", "offset": 576,  "size": 4, "type": "REAL" },
+        { "name": "bac03-hz",       "offset": 626,  "size": 4, "type": "REAL" },
+        { "name": "bac03-corrente", "offset": 622,  "size": 4, "type": "REAL" },
+        { "name": "bac04-hz",       "offset": 676,  "size": 4, "type": "REAL" },
+        { "name": "bac04-corrente", "offset": 672,  "size": 4, "type": "REAL" },
+        { "name": "bac05-hz",       "offset": 726,  "size": 4, "type": "REAL" },
+        { "name": "bac05-corrente", "offset": 722,  "size": 4, "type": "REAL" },
+        { "name": "bac06-hz",       "offset": 776,  "size": 4, "type": "REAL" },
+        { "name": "bac06-corrente", "offset": 772,  "size": 4, "type": "REAL" },
+        { "name": "bac07-hz",       "offset": 826,  "size": 4, "type": "REAL" },
+        { "name": "bac07-corrente", "offset": 822,  "size": 4, "type": "REAL" },
+        { "name": "bac08-hz",       "offset": 876,  "size": 4, "type": "REAL" },
+        { "name": "bac08-corrente", "offset": 872,  "size": 4, "type": "REAL" },
+        { "name": "bac09-hz",       "offset": 926,  "size": 4, "type": "REAL" },
+        { "name": "bac09-corrente", "offset": 922,  "size": 4, "type": "REAL" },
+        { "name": "bac10-hz",       "offset": 976,  "size": 4, "type": "REAL" },
+        { "name": "bac10-corrente", "offset": 972,  "size": 4, "type": "REAL" },
+        { "name": "bac11-hz",       "offset": 1026, "size": 4, "type": "REAL" },
+        { "name": "bac11-corrente", "offset": 1022, "size": 4, "type": "REAL" },
+        { "name": "bac12-hz",       "offset": 1076, "size": 4, "type": "REAL" },
+        { "name": "bac12-corrente", "offset": 1072, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    {
+      "name": "CLP BOMBAS AGUA GELADA",
+      "ip": "192.168.0.3",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 72,
+      "vars": [
+
+        { "name": "bag01-hz",       "offset": 240,  "size": 4, "type": "REAL" },
+        { "name": "bag01-corrente", "offset": 236,  "size": 4, "type": "REAL" },
+        { "name": "bag02-hz",       "offset": 290,  "size": 4, "type": "REAL" },
+        { "name": "bag02-corrente", "offset": 286,  "size": 4, "type": "REAL" },
+        { "name": "bag03-hz",       "offset": 340,  "size": 4, "type": "REAL" },
+        { "name": "bag03-corrente", "offset": 336,  "size": 4, "type": "REAL" },
+        { "name": "bag04-hz",       "offset": 390,  "size": 4, "type": "REAL" },
+        { "name": "bag04-corrente", "offset": 386,  "size": 4, "type": "REAL" },
+        { "name": "bag05-hz",       "offset": 440,  "size": 4, "type": "REAL" },
+        { "name": "bag05-corrente", "offset": 436,  "size": 4, "type": "REAL" },
+        { "name": "bag06-hz",       "offset": 490,  "size": 4, "type": "REAL" },
+        { "name": "bag06-corrente", "offset": 486,  "size": 4, "type": "REAL" },
+        { "name": "bag07-hz",       "offset": 540,  "size": 4, "type": "REAL" },
+        { "name": "bag07-corrente", "offset": 536,  "size": 4, "type": "REAL" },
+        { "name": "bag08-hz",       "offset": 590,  "size": 4, "type": "REAL" },
+        { "name": "bag08-corrente", "offset": 586,  "size": 4, "type": "REAL" },
+        { "name": "bag09-hz",       "offset": 640,  "size": 4, "type": "REAL" },
+        { "name": "bag09-corrente", "offset": 636,  "size": 4, "type": "REAL" }
+        
+      ]
+    },
+
+    {
+      "name": "CLP CONSUMO ESPECIFO",
+      "ip": "192.168.0.1",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 350,
+      "vars": [
+        { "name": "consumo especifico compressores", "offset": 48, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    
+    {
+      "name": "AHU1MON",
+      "ip": "192.168.15.3",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu1", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu1", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu1", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu1",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU2MON",  "ip": "192.168.15.2",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu2", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu2", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu2", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu2",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU3MON",  "ip": "192.168.15.5",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu3", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu3", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu3", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu3",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU4MON", "ip": "192.168.15.8",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu4", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu4", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu4", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu4",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU5MON", "ip": "192.168.15.1",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu5", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu5", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu5", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu5",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU6MON", "ip": "192.168.15.4",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu6", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu6", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu6", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu6",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU7MON", "ip": "192.168.15.6",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu7", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu7", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu7", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu7",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU8MON", "ip": "192.168.15.7",  "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu8", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu8", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu8", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu8",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU9MON", "ip": "192.168.15.10", "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu9", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu9", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu9", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu9",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+    { "name": "AHU10MON", "ip": "192.168.15.9", "rack": 0, "slot": 1, "db_default": 100,
+      "vars": [
+        { "name": "Fan01 ahu10", "offset": 382, "size": 4, "type": "REAL" },
+        { "name": "Fan02 ahu10", "offset": 400, "size": 4, "type": "REAL" },
+        { "name": "vazao ahu10", "offset": 366, "size": 4, "type": "REAL" },
+        { "name": "val ahu10",   "offset": 418, "size": 4, "type": "REAL" },
+        { "name": "ent-agua",    "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+        { "name": "sai-agua",    "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+        { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+        { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+      ]
+    },
+
+         {
+    "name": "AHU1FUN",
+    "ip": "192.168.16.3",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu1", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu1", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu1", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu1",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU2FUN",
+    "ip": "192.168.16.4",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu2", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu2", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu2", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu2",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU3FUN",
+    "ip": "192.168.16.5",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu3", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu3", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu3", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu3",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU4FUN",
+    "ip": "192.168.16.2",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu4", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu4", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu4", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu4",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU5FUN",
+    "ip": "192.168.16.9",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu5", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu5", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu5", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu5",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU6FUN",
+    "ip": "192.168.16.6",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu6", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu6", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu6", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu6",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU7FUN",
+    "ip": "192.168.16.1",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu7", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu7", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu7", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu7",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU8FUN",
+    "ip": "192.168.16.8",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu8", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu8", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu8", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu8",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  },
+  {
+    "name": "AHU9FUN",
+    "ip": "192.168.16.7",
+    "rack": 0,
+    "slot": 1,
+    "db_default": 100,
+    "vars": [
+      { "name": "Fan01 ahu9", "offset": 382, "size": 4, "type": "REAL" },
+      { "name": "Fan02 ahu9", "offset": 400, "size": 4, "type": "REAL" },
+      { "name": "vazao ahu9", "offset": 366, "size": 4, "type": "REAL" },
+      { "name": "val ahu9",   "offset": 418, "size": 4, "type": "REAL" },
+      { "name": "ent-agua", "db": 4, "offset": 56, "size": 4, "type": "REAL" },
+      { "name": "sai-agua", "db": 4, "offset": 60, "size": 4, "type": "REAL" },
+      { "name": "ent-pressao", "db": 4, "offset": 64, "size": 4, "type": "REAL" },
+      { "name": "sai-pressao", "db": 4, "offset": 68, "size": 4, "type": "REAL" }
+    ]
+  }
+
+
+
+  ]
+}

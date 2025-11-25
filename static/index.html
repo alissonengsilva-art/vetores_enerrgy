@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S7 Monitor</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #141b23;
+      --card: #1c2530;
+      --accent: #00c8ff;
+      --muted: #8aa0b5;
+      --text: #e7edf4;
+      --danger: #ff6b6b;
+      --success: #7bffb5;
+      --border: #1f2a36;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "DIN Condensed", "Arial Narrow", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(0,200,255,0.05), transparent 25%),
+                  radial-gradient(circle at 80% 0%, rgba(0,255,160,0.06), transparent 20%),
+                  var(--bg);
+      color: var(--text);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      background: linear-gradient(120deg, #0f1621, #121c29);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .title { font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 12px rgba(255,107,107,0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dot.ok { background: var(--success); box-shadow: 0 0 12px rgba(123,255,181,0.8); }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 0;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 10px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .tab.active {
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      box-shadow: inset 0 -2px 0 var(--accent);
+    }
+    .content {
+      padding: 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      min-height: 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(0,200,255,0.06), transparent 45%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .card.flash::after { opacity: 1; }
+    .label { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .value { font-size: 24px; color: var(--text); font-variant-numeric: tabular-nums; }
+    .ts {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .overview {
+      display: flex;
+      gap: 12px;
+      padding: 0 16px 16px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">S7 Monitor • FastAPI</div>
+    <div class="status"><div class="dot" id="ws-dot"></div><span id="ws-status">Offline</span></div>
+  </header>
+  <div class="tabs" id="tabs"></div>
+  <div class="overview" id="overview"></div>
+  <div class="content">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script>
+    const state = { clps: [], active: null, snapshot: {} };
+    let ws;
+    let lastMessageTs = null;
+
+    const dot = document.getElementById("ws-dot");
+    const statusText = document.getElementById("ws-status");
+    const tabsEl = document.getElementById("tabs");
+    const gridEl = document.getElementById("grid");
+    const overviewEl = document.getElementById("overview");
+
+    function setWsStatus(ok) {
+      dot.classList.toggle("ok", ok);
+      statusText.textContent = ok ? `Online · ${lastMessageTs || "aguardando..."}` : "Offline";
+    }
+
+    function buildTabs() {
+      tabsEl.innerHTML = "";
+      state.clps.forEach((clp, idx) => {
+        const btn = document.createElement("div");
+        btn.className = "tab" + (state.active === clp.slug ? " active" : "");
+        btn.textContent = clp.name;
+        btn.onclick = () => { state.active = clp.slug; buildTabs(); renderGrid(); };
+        tabsEl.appendChild(btn);
+        if (!state.active && idx === 0) state.active = clp.slug;
+      });
+    }
+
+    function renderOverview() {
+      overviewEl.innerHTML = "";
+      const ts = lastMessageTs ? `Atualizado: ${lastMessageTs}` : "Aguardando dados...";
+      const chipTs = document.createElement("div");
+      chipTs.className = "chip";
+      chipTs.textContent = ts;
+      overviewEl.appendChild(chipTs);
+
+      const chipConn = document.createElement("div");
+      chipConn.className = "chip";
+      chipConn.textContent = `CLPs: ${state.clps.length}`;
+      overviewEl.appendChild(chipConn);
+    }
+
+    function renderGrid() {
+      gridEl.innerHTML = "";
+      const data = state.snapshot[state.active] || {};
+      const entries = Object.entries(data).filter(([k]) => k !== "_ts");
+      entries.forEach(([k, v]) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const label = document.createElement("div");
+        label.className = "label";
+        label.textContent = k.replaceAll("_", " ");
+        const value = document.createElement("div");
+        value.className = "value";
+        value.textContent = v === null || v === undefined ? "—" : v;
+        const ts = document.createElement("div");
+        ts.className = "ts";
+        ts.textContent = data["_ts"] ? `@ ${data["_ts"]}` : "";
+        card.append(label, value, ts);
+        card.dataset.key = k;
+        gridEl.appendChild(card);
+      });
+      renderOverview();
+    }
+
+    function applyUpdate(payload) {
+      if (payload.clps) {
+        Object.entries(payload.clps).forEach(([clpSlug, values]) => {
+          state.snapshot[clpSlug] = values;
+        });
+      }
+      lastMessageTs = payload.ts || new Date().toISOString();
+      setWsStatus(true);
+      flashCards(payload.clps);
+      renderGrid();
+    }
+
+    function flashCards(clpData) {
+      if (!clpData) return;
+      const current = clpData[state.active];
+      if (!current) return;
+      Object.keys(current).forEach(k => {
+        if (k === "_ts") return;
+        const card = [...document.querySelectorAll(".card")].find(c => c.dataset.key === k);
+        if (card) {
+          card.classList.add("flash");
+          setTimeout(() => card.classList.remove("flash"), 200);
+        }
+      });
+    }
+
+    function connectWs() {
+      const wsProto = location.protocol === "https:" ? "wss" : "ws";
+      ws = new WebSocket(`${wsProto}://${location.host}/ws`);
+      ws.onopen = () => setWsStatus(true);
+      ws.onclose = () => {
+        setWsStatus(false);
+        setTimeout(connectWs, 1500);
+      };
+      ws.onerror = () => setWsStatus(false);
+      ws.onmessage = (evt) => {
+        try {
+          const payload = JSON.parse(evt.data);
+          if (payload.type === "snapshot" || payload.type === "update") applyUpdate(payload);
+        } catch (e) {
+          console.error("Erro ao processar WS", e);
+        }
+      };
+    }
+
+    async function bootstrap() {
+      try {
+        const clps = await fetch("/api/clps").then(r => r.json());
+        state.clps = clps;
+        buildTabs();
+        renderGrid();
+      } catch (e) {
+        console.error("Erro ao carregar CLPs", e);
+      }
+      connectWs();
+    }
+
+    bootstrap();
+  </script>
+</body>
+</html>

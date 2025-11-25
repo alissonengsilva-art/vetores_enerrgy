@@ -1,0 +1,74 @@
+["CLP 1500", "192.168.0.2", 0, 1, 72, [
+       
+        ("Temperatura Água resfriamento Prensas", 114, 4, "REAL"),
+        ("Pressão Água resfriamento Prensas", 118, 4, "REAL"),
+
+        ("Temperatura Água resfriamento Funilaria", 276, 4, "REAL"),
+        ("Pressão Água resfriamento Funilaria", 280, 4, "REAL"),
+
+        ("Tempreratura Header", 800, 4, "REAL")
+    ]],
+    ["CLP MCC 1", "192.168.0.4", 0, 1, 72, [
+         ("Temperatura Água resfriamento Compressores", 230, 4, "REAL"),
+        ("Pressão Água Compressores", 234, 4, "REAL"),
+    ]]
+
+    #Consumo especifico Compressores
+    (192.168.0.1)
+    350.48  
+
+    CLPs = [
+    ["AHU1", "192.168.15.3", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU2", "192.168.15.2", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU3", "192.168.15.5", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU4", "192.168.15.8", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU5", "192.168.15.1", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU6", "192.168.15.4", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU8", "192.168.15.7", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU9", "192.168.15.10", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],
+    ["AHU10", "192.168.15.9", 0, 1, 4, [
+        ("ent-agua", 56, 4, "REAL"),
+        ("sai-agua", 60, 4, "REAL"),
+        ("ent-pressao", 64, 4, "REAL"),
+        ("sai-pressao", 68, 4, "REAL"),
+    ]],

@@ -1,0 +1,37 @@
+{
+  "mqtt": {
+    "period": 2.0
+  },
+  "s7": {
+    "retries": 3,
+    "min_interval_ms": 10
+  },
+  "clps": [
+    {
+      "name": "CLP 1500 - AR COMPRIMIDO",
+      "ip": "192.168.0.1",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 1,
+      "vars": [
+        { "name": "Pressao ar Montagem",  "offset": 0, "size": 4, "type": "REAL" },
+        { "name": "Pressao ar Funilaria", "offset": 4, "size": 4, "type": "REAL" },
+        { "name": "Pressao ar Pintura",   "offset": 8, "size": 4, "type": "REAL" },
+        { "name": "Pressao ar Prensas",   "offset": 12, "size": 4, "type": "REAL" },
+        { "name": "Pressao ar Supply 1",  "offset": 16, "size": 4, "type": "REAL" },
+        { "name": "Pressao Central de AR","offset": 20, "size": 4, "type": "REAL" }
+      ]
+    },
+    {
+      "name": "CLP 1500 - COMPRESSORES",
+      "ip": "192.168.0.1",
+      "rack": 0,
+      "slot": 1,
+      "db_default": 2,
+      "vars": [
+        { "name": "cp01-pressao", "offset": 0, "size": 4, "type": "REAL" },
+        { "name": "cp01-sp",      "offset": 4, "size": 4, "type": "REAL" }
+      ]
+    }
+  ]
+}
