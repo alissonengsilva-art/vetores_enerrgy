@@ -1,0 +1,9 @@
+@echo off
+REM === Ir para a pasta do projeto de vetores ===
+cd /d "C:\Users\manutencao\Documents\ALISSON\vetores\vetores_enerrgy"
+
+REM === Ativar o ambiente virtual do projeto ===
+call ".venv\Scripts\activate.bat"
+
+REM === Iniciar o servidor FastAPI (s7_monitor.py) ===
+python -m uvicorn s7_monitor:app --reload --host 0.0.0.0 --port 5000
